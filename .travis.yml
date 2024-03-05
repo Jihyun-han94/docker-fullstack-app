@@ -6,21 +6,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t gks/react-test-app -f ./frontend/Dockerfile.dev ./frontend
+  - docker build -t gkswlgus923/react-test-app -f ./frontend/Dockerfile.dev ./frontend
 
 script:
-  - docker run -e CI=true gks/react-test-app npm run test
+  - docker run -e CI=true gkswlgus923/react-test-app npm run test
 
 after_success:
-  - docker build -t gks/docker-frontend ./frontend
-  - docker build -t gks/docker-backend ./backend
-  - docker build -t gks/docker-nginx ./nginx
+  - docker build -t gkswlgus923/docker-frontend ./frontend
+  - docker build -t gkswlgus923/docker-backend ./backend
+  - docker build -t gkswlgus923/docker-nginx ./nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
-  - docker push gks/docker-frontend
-  - docker push gks/docker-backend
-  - docker push gks/docker-nginx
+  - docker push gkswlgus923/docker-frontend
+  - docker push gkswlgus923/docker-backend
+  - docker push gkswlgus923/docker-nginx
 
 # deploy:
 #   provider: elasticbeanstalk
